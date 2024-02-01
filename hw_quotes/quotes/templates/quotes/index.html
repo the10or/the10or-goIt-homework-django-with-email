@@ -1,0 +1,62 @@
+{% extends 'quotes/base.html' %}
+{% load extract %}
+
+{% block title %}
+index
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-8">
+        {% for quote in quotes %}
+        <div class="quote" itemscope="" itemtype="http://schema.org/CreativeWork">
+            <span class="text" itemprop="text">
+                {{ quote.quote }}
+            </span>
+            <span>by <small class="author" itemprop="author">{{quote.author|author}}</small>
+
+        <a href="/details/{{quote.author}}" previewlistener="true">(about)</a>
+        </span>
+            <div class="tags">
+                Tags:
+                {% for tag in quote.tags %}
+                <span class="tag">
+                    <a href="/tag/{{tag}}" previewlistener="true">{{ tag }}</a>
+                </span>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        {% endfor %}
+        <nav>
+            <ul class="pager">
+
+                <li class="pager-item previous">
+                    <a class="{% if not quotes.has_previous %}disabled{% endif %}"
+                       href="{% if quotes.has_previous %} {% url 'quotes:index_page' quotes.previous_page_number %} {% else %} # {% endif %}">
+                        <span aria-hidden="true">←</span> Previous</a>
+                </li>
+
+
+                <li class="pager-item next">
+                    <a class="{% if not quotes.has_next %}disabled{% endif %}"
+                       href=" {% if quotes.has_next %} {% url 'quotes:index_page' quotes.next_page_number %} {% else %} # {% endif %}"
+                       previewlistener="true">
+                        Next <span aria-hidden="true">→</span>
+                    </a>
+
+
+                </li>
+
+
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+
+{% endblock %}

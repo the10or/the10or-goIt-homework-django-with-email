@@ -1,0 +1,15 @@
+{% extends 'quotes/base.html' %}
+{% load my_filters %}
+
+{% block title %}
+authors
+{% endblock %}
+{% block content %}
+<h1 style="text-align: center">Authors</h1>
+<ul>
+    {% for author in authors %}
+
+    <li><a href="/details/{{author|mongo_id}}"> {{ author.fullname }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
