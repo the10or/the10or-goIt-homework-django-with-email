@@ -6,22 +6,22 @@ quotes by tag
 {% endblock %}
 
 {% block content %}
-<h1 style="text-align: center">Quotes by tag <b>{{ tag }}</b></h1>
+<h1 style="text-align: center">Quotes by tag <b>{{ tag.name }}</b></h1>
 <ul>
-     {% for quote in quotes %}
+     {% for quote in quotes.all %}
         <div class="quote" itemscope="" itemtype="http://schema.org/CreativeWork">
             <span class="text" itemprop="text">
-                {{ quote.quote }}
+                {{ quote.text }}
             </span>
-            <span>by <small class="author" itemprop="author">{{quote.author|author}}</small>
+            <span>by <small class="author" itemprop="author">{{quote.author.fullname}}</small>
 
-        <a href="/details/{{quote.author}}" previewlistener="true">(about)</a>
+        <a href="/details/{{quote.author.id}}" previewlistener="true">(about)</a>
         </span>
             <div class="tags">
                 Tags:
-                {% for tag in quote.tags %}
+                {% for tag in quote.tags.all %}
                 <span class="tag">
-                    <a href="/tag/{{tag}}" previewlistener="true">{{ tag }}</a>
+                    <a href="/tag/{{tag.name}}" previewlistener="true">{{ tag.name }}</a>
                 </span>
                 {% endfor %}
 

@@ -1,16 +1,14 @@
+from bson import ObjectId
 from django import template
-
-from ..utils import db
+from ..models import Author
 
 register = template.Library()
 
-
-@register.filter('author')
-def get_author(id_):
-    author = db.authors.find_one({'_id': id_})
-    if not author:
+@register.filter
+def author(id_):
+    try:
+        author = Author.objects.get(pk=ObjectId(id_))
+        return author.fullname
+    except (Author.DoesNotExist, ValueError, TypeError):
         return None
-    return author['fullname']
 
-
-register.filter('author', get_author)

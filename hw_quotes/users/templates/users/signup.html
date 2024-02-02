@@ -1,10 +1,42 @@
 {% extends 'quotes/base.html' %}
+{% load static %}
 {% block title %}Signup{% endblock %}
 {% block content %}
-<h1>Signup</h1>
-<form action="" method="post">
+<div>
+    <h2>Sign Up</h2>
+</div>
+
+<form action="{% url 'users:signup' %}" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Signup">
+    <div>
+        <label> Username:
+            {{ form.username }}
+        </label>
+        <span>{{ form.errors.username }}</span>
+    </div>
+    <div>
+        <label> Email:
+            {{ form.email }}
+        </label>
+        <span>{{ form.errors.email }}</span>
+    </div>
+
+    <br>
+    <div>
+        <label> Password:
+            {{ form.password1 }}
+        </label>
+        <span>{{ form.errors.password1 }}</span>
+    </div>
+    <div>
+        <label> Password confirmation:
+            {{ form.password2 }}
+        </label>
+        <span>{{ form.errors.password2 }}</span>
+    </div>
+    <div class="grid">
+        <button class="button_form" type="submit">Submit</button>
+        <button class="secondary" type="reset">Reset</button>
+    </div>
 </form>
 {% endblock %}

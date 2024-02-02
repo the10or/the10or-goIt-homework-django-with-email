@@ -9,7 +9,7 @@ authors
 <ul>
     {% for author in authors %}
 
-    <li><a href="/details/{{author|mongo_id}}"> {{ author.fullname }}</a></li>
+    <li><a href="/details/{{ author.id }}"> {{ author.fullname }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
