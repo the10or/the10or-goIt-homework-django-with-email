@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
+from .models import Profile
+
 
 class SignUpForm(UserCreationForm):
     username = forms.CharField(max_length=30, required=True)
@@ -31,3 +33,10 @@ class LoginForm(AuthenticationForm):
     class Meta:
         model = User
         fields = ("username", "password")
+
+class ProfileForm(forms.ModelForm):
+    avatar = forms.ImageField(widget=forms.FileInput())
+
+    class Meta:
+        model = Profile
+        fields = ["avatar"]

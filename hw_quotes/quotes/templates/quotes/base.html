@@ -6,7 +6,7 @@
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet">
     {% load static %}
     <link href="{% static 'quotes/style.css' %}" rel="stylesheet">
-    <link rel="icon" href="{% static 'quotes/favicon.png' %}" type="image/x-icon">
+    <link href="{% static 'quotes/kiss.png' %}" rel="icon" type="image/x-icon">
 
     <title>{% block title %}{% endblock %}</title>
 </head>
@@ -15,29 +15,61 @@
     <div class="row header-box">
         <div class="col-md-8">
             <h1>
-                <a href="/" previewlistener="true" style="text-decoration: none">Quotes to Scrape</a>
+                <a href="/" style="text-decoration: none">Quotes to Scrape</a>
             </h1>
         </div>
         <div class="col-md-4">
             {% if user.is_authenticated %}
-            <p>
-                Hello, <a href="/users/{{ user.username }}" previewlistener="true">{{ user.username }}</a>!
+            <div class="d-flex justify-content-between">
 
-            <a href="/users/logout/" previewlistener="true">Signout</a>
-            </p>
+                <div class="d-flex flex-column">
+
+                    <div class="tag">
+                        <a href="/users/profile/">Add a Quote</a>
+                    </div>
+
+                    <br>
+
+                    <div class="tag">
+                        <a href="/users/profile/">Add an Author</a>
+                    </div>
+
+                </div>
+
+
+                <div>
+                    <a href="/users/profile/">
+                        <img src="{{user.profile.avatar.url}}" style="width:36px"><br>{{ user.username }}
+                    </a>
+                </div>
+
+                <a href="/users/logout/">Signout</a>
+
+            </div>
+
             {% elif user.is_anonymous %}
             <p>
-
-                <a href="/users/login/" previewlistener="true">Login</a> or
-                <a href="/users/signup/" previewlistener="true">Signup</a>
-
+                <a href="/users/login/">Login</a> or
+                <a href="/users/signup/">Signup</a>
             </p>
             {% endif %}
         </div>
     </div>
     {% block content %}{% endblock %}
-</div>
 
+
+</div>
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">
+            Quotes by: <a href="https://www.goodreads.com/quotes">GoodReads.com</a>
+        </p>
+        <p class="copyright">
+            Made with <span><img alt="kiss" style="width: 36px" src=" {% static 'quotes/kiss.png' %}"></span> by <a
+                href="https://www.linkedin.com/in/sergiy-koval-14b0a212/">the10or</a>
+        </p>
+    </div>
+</footer>
 
 </body>
 </html>

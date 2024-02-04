@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from .forms import SignUpForm, LoginForm
+from .forms import SignUpForm, LoginForm, ProfileForm
 
 
 # Create your views here.
@@ -23,6 +23,7 @@ def login_view(request):
         return redirect("/")
 
     return render(request, "users/login.html", context={"form": LoginForm()})
+
 
 @login_required
 def logout_view(request):
@@ -45,5 +46,21 @@ def signup_view(request):
     return render(request, "users/signup.html", context={"form": SignUpForm()})
 
 
-def profile_view(request, user):
-    return request, "users/profile.html"
+def profile_view(request):
+    if request.method == "POST":
+        profile_form = ProfileForm(
+            request.POST,
+            request.FILES,
+            instance=request.user.profile
+        )
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, "Profile updated")
+            return redirect(to="users:profile")
+
+    profile_form = ProfileForm(instance=request.user.profile)
+    return render(
+        request,
+        "users/profile.html",
+        context={"profile_form": profile_form}
+    )

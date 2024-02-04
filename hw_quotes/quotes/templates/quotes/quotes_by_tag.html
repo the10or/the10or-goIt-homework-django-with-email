@@ -6,7 +6,7 @@ quotes by tag
 {% endblock %}
 
 {% block content %}
-<h1 style="text-align: center">Quotes by tag <b>{{ tag.name }}</b></h1>
+<h3 style="text-align: left; margin-left: 30px;"><b>Viewing tag: <p style="display: inline; color: #4582ec" >{{ tag.name }}</p></b></h3>
 <ul>
      {% for quote in quotes.all %}
         <div class="quote" itemscope="" itemtype="http://schema.org/CreativeWork">

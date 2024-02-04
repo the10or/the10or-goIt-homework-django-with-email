@@ -1,6 +1,6 @@
-from django.db import models
-from django.contrib.auth.models import User
 from PIL import Image
+from django.contrib.auth.models import User
+from django.db import models
 
 
 class Profile(models.Model):
@@ -11,7 +11,7 @@ class Profile(models.Model):
         return self.user.username
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs )
+        super().save(*args, **kwargs)
 
         img = Image.open(self.avatar.path)
 
@@ -19,4 +19,3 @@ class Profile(models.Model):
             new_img = (250, 250)
             img.thumbnail(new_img)
             img.save(self.avatar.path)
-
