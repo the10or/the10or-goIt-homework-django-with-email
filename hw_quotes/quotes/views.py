@@ -1,6 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
+from .forms import QuoteForm, AuthorForm
 from .models import Quote, Author, Tag  # Імпортуємо моделі Django
 
 
@@ -15,7 +17,7 @@ def main(request, page=1):
 
 def details(request, author_id):
     author = Author.objects.get(pk=author_id)  # Використовуємо модель Author замість db.authors.find_one()
-    print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+
     print(author.fullname)
     return render(request, "quotes/author_details.html", context={"author": author})
 
@@ -32,3 +34,27 @@ def tag_list(request, tag):
     return render(
         request, "quotes/quotes_by_tag.html", context={"quotes": quotes, "tag": tag}
     )
+
+
+@login_required()
+def add_author(request):
+    if request.method == "POST":
+        form = AuthorForm(request.POST)
+        if form.is_valid():
+            new_author = form.save()
+            return redirect("quotes:author_list")
+        else:
+            print(form.errors)
+    else:
+        form = AuthorForm()
+    return render(request, "quotes/add_author.html", {"form": form})
+
+
+@login_required
+def add_quote(request):
+    form = QuoteForm(request.POST)
+    if request.method == "POST":
+        if form.is_valid():
+            new_quote = form.save()
+            return redirect("/")
+    return render(request, "quotes/add_quote.html", {"form": form})

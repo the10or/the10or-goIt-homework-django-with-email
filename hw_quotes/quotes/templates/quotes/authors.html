@@ -6,10 +6,12 @@ authors
 {% endblock %}
 {% block content %}
 <h1 style="text-align: center">Authors</h1>
-<ul>
-    {% for author in authors %}
+<div style="margin-bottom: 100px">
+    <ol>
+        {% for author in authors %}
 
-    <li><a href="/details/{{ author.id }}"> {{ author.fullname }}</a></li>
-    {% endfor %}
-</ul>
+        <li class="quote"><h4>{{ author.fullname }}</h4><a href="/details/{{ author.id }}">(about)</a><br></li>
+        {% endfor %}
+    </ol>
+</div>
 {% endblock %}

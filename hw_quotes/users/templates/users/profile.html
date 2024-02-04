@@ -2,7 +2,7 @@
 
 {% block content %}
 <div>
-    <h1>Profile page: {{user.username}}</h1>
+    <h2>Profile page: {{user.username}}</h2><br>
     <img src="{{ user.profile.avatar.url }}" alt="avatar of user"/>
 </div>
 
@@ -14,17 +14,19 @@
 </div>
 {% endif %}
 
-<form method="post" enctype="multipart/form-data">
+<form class="container" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-row">
         <div class="col-md-5">
             <div class="form-group">
-                <label class="small mb-1">Change Avatar:</label>
+                <label class="small mb-1">Change Avatar:</label><br>
                 {{ profile_form.avatar }}
                 <span>{{ profile_form.errors.avatar }}</span>
             </div>
         </div>
     </div>
+    <br>
+
     <div class="grid">
         <button type="submit">Save Changes</button>
         <button type="reset" class="secondary">Reset</button>

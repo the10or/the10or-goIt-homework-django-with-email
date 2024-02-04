@@ -34,20 +34,24 @@ index
         <nav>
             <ul class="pager">
 
-                <li class="pager-item previous">
+                <li class="pager-item previous" style="float: left">
                     <a class="{% if not quotes.has_previous %}disabled{% endif %}"
                        href="{% if quotes.has_previous %} {% url 'quotes:index_page' quotes.previous_page_number %} {% else %} # {% endif %}">
                         <span aria-hidden="true">←</span> Previous</a>
                 </li>
 
 
-                <li class="pager-item next">
+                <li class="pager-item next" style="float: right">
                     <a class="{% if not quotes.has_next %}disabled{% endif %}"
                        href=" {% if quotes.has_next %} {% url 'quotes:index_page' quotes.next_page_number %} {% else %} # {% endif %}"
                        previewlistener="true">
                         Next <span aria-hidden="true">→</span>
                     </a>
+
+
                 </li>
+
+
             </ul>
         </nav>
     </div>

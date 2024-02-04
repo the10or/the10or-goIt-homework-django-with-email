@@ -8,35 +8,34 @@
 
 <form action="{% url 'users:signup' %}" method="post">
     {% csrf_token %}
-    <div>
-        <label> Username:
-            {{ form.username }}
-        </label>
+    <div class="form-group mb-3">
+        <label> Username:</label><br>
+        {{ form.username }}
         <span>{{ form.errors.username }}</span>
     </div>
-    <div>
-        <label> Email:
+    <div class="form-group mb-3">
+        <label> Email:<br>
             {{ form.email }}
         </label>
         <span>{{ form.errors.email }}</span>
     </div>
 
     <br>
-    <div>
-        <label> Password:
+    <div class="form-group mb-3">
+        <label> Password:<br>
             {{ form.password1 }}
         </label>
         <span>{{ form.errors.password1 }}</span>
     </div>
-    <div>
-        <label> Password confirmation:
+    <div class="form-group mb-3">
+        <label> Password confirmation:<br>
             {{ form.password2 }}
         </label>
         <span>{{ form.errors.password2 }}</span>
     </div>
     <div class="grid">
-        <button class="button_form" type="submit">Submit</button>
-        <button class="secondary" type="reset">Reset</button>
+        <button class="tag" type="submit">Submit</button>
+        <button class="tag" type="reset">Reset</button>
     </div>
 </form>
 {% endblock %}
