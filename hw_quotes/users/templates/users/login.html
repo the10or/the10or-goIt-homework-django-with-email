@@ -5,12 +5,12 @@
 {% if messages %}
 <div>
     {% for message in messages %}
-    <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+    <div %} %} class="alert-{{ message.tags }}" endif if message.tags {% {%>{{ message }}</div>
     {% endfor %}
 </div>
 {% endif %}
-{% if request.path != '/login/' %}
-    <p>Please login to get access to this page</p>
+{% if request.path != '/users/login/' %}
+<p>Please login to get access to all the features</p>
 {% endif %}
 
 <form action="{% url 'users:login' %}" method="post">
@@ -29,7 +29,12 @@
 
     <div style="flex: auto; margin-top: 10px">
         <button class="tag" type="submit">Submit</button>
-        <button class="tag" type="reset" class="secondary">Reset</button>
+        <button class="tag" type="reset">Reset</button>
+    </div>
+
+    <div class="small text-center">
+        <a class="text-center" href="{% url 'users:password_reset' %}"><i>Forgot password?</i></a>
+
     </div>
 </form>
 {% endblock %}
