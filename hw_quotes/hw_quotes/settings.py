@@ -24,7 +24,7 @@ environ.Env.read_env(BASE_DIR / ".env")
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY") #"django-insecure-j&ls#0j@0qq@4p@jj#u8$7+gi%!l%y)fwiigg^9&7+@q6gc@ur"
+SECRET_KEY = env("SECRET_KEY") 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -93,11 +93,11 @@ WSGI_APPLICATION = "hw_quotes.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": env("DB_NAME"),#"hw_quotes",
-        "USER": env("DB_USER"),#"postgres",
-        "PASSWORD": env("DB_PASS"),#"postgres",
-        "HOST": env("DB_HOST"),#"localhost",
-        "PORT": env("DB_PORT"),#"5432",
+        "NAME": env("DB_NAME"),
+        "USER": env("DB_USER"),
+        "PASSWORD": env("DB_PASS"),
+        "HOST": env("DB_HOST"),
+        "PORT": env("DB_PORT"),
     }
 }
 
